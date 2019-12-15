@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
-                                Toast.makeText(LoginActivity.this,"Login error, please Login again.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"Login error, please Login again.",Toast.LENGTH_SHORT);
                             }
                             else {
                                 Intent intTohome = new Intent(LoginActivity.this,LoginActivity.class);
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 }
                 else {
-                    Toast.makeText(LoginActivity.this,"error ocurred",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"error ocurred",Toast.LENGTH_SHORT);
                 }
             }
         });

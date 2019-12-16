@@ -32,7 +32,7 @@ public class CartListActivity extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);*/
 
 
-        pluss = findViewById(R.id.logOutButton);
+        pluss = findViewById(R.id.plus);
 
         pluss.setOnClickListener(new View.OnClickListener() {
             @Override

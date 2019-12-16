@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    EditText email,pass;
+    EditText email,pass,confpass;
     Button btnSignUp;
     TextView tvSignIn;
 
@@ -31,6 +31,7 @@ public class SignupActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.emailid);
         pass = findViewById((R.id.passid));
+        confpass = findViewById(R.id.input_VerPassword);
         btnSignUp = findViewById(R.id.btn_signup);
         tvSignIn = findViewById(R.id.link_login);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +39,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String emailstr = email.getText().toString();
                 String password = pass.getText().toString();
+                String passConfirm = confpass.getText().toString();
                 if (emailstr.isEmpty()) {
                     email.setError("please enter email..");
                     email.requestFocus();
@@ -48,6 +50,12 @@ public class SignupActivity extends AppCompatActivity {
                 }
                 else if(emailstr.isEmpty() && password.isEmpty()) {
                     Toast.makeText(SignupActivity.this,"fields are empty!",Toast.LENGTH_SHORT).show();
+                }
+                else if(passConfirm.isEmpty() | !passConfirm.equals(password)) {
+                    Toast.makeText(SignupActivity.this,"passwords do not match.",Toast.LENGTH_SHORT).show();
+                }
+                else if(password.length() < 6){
+                    Toast.makeText(SignupActivity.this,"password needs to be longer then 5 characters",Toast.LENGTH_SHORT).show();
                 }
                 else if(!emailstr.isEmpty() && !password.isEmpty()){
                     mAuth.createUserWithEmailAndPassword(emailstr,password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {

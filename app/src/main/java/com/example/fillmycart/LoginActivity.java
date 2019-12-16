@@ -37,13 +37,19 @@ public class LoginActivity extends AppCompatActivity {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                String emailstr = email.getText().toString();
-                String password = pass.getText().toString();
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
+                String emailstr = email.getText().toString();
                 if(mFirebaseUser != null) {
-                    Toast.makeText(LoginActivity.this,"you are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this,CartListActivity.class);
-                    startActivity(i);
+                    if(emailstr.equals("danivngopro@gmail.com")) {
+                        Toast.makeText(LoginActivity.this, "Hello, Daniel", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(LoginActivity.this, MangerActionActivity.class);
+                        startActivity(i);
+                    }
+                    else {
+                        Toast.makeText(LoginActivity.this, "you are logged in", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(LoginActivity.this, CartListActivity.class);
+                        startActivity(i);
+                    }
                 }
                 else {
                     Toast.makeText(LoginActivity.this,"Please Log In..",Toast.LENGTH_SHORT).show();
@@ -71,11 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(emailstr,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()){
-                                Toast.makeText(LoginActivity.this,"account does not exist, please try again.",Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Toast.makeText(LoginActivity.this,"Login failed, please Login again.",Toast.LENGTH_SHORT).show();
+                            if(!task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "account does not exist, please try again.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -18,7 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    EditText email,pass;
+    EditText email;
+    private EditText pass;
     Button btnSignUp;
     TextView tvSignIn;
 

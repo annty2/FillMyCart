@@ -8,22 +8,23 @@ import android.widget.Button;
 
 public class MangerActionActivity extends AppCompatActivity {
 
-    private Button _remove,_add,_sales,_price;
+    private Button _remove,_add,_productApprove,_priceUpdate,_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manger_action);
 
-        _remove = (Button)findViewById(R.id.btn_remove);
-        _add = (Button)findViewById(R.id.btn_add);
-        _sales = (Button)findViewById(R.id.btn_sale);
-        _price = (Button)findViewById(R.id.btn_price);
+        _remove = (Button)findViewById(R.id.deleteButton);
+        _add = (Button)findViewById(R.id.addButton);
+        _productApprove = (Button)findViewById(R.id.approveButton);
+        _priceUpdate = (Button)findViewById(R.id.updateButton);
+        _list = (Button)findViewById(R.id.makeListButton);
 
 
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MangerActionActivity.this , ProductsActivity.class);
+                Intent intent = new Intent(MangerActionActivity.this , AddProductActivity.class);
                 startActivity(intent);
             }
         });

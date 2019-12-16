@@ -21,6 +21,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText email,pass;
     Button btnSignUp;
     TextView tvSignIn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

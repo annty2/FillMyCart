@@ -1,31 +1,61 @@
 package com.example.fillmycart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class CartListActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+    Button LogOut;
+    FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthStatelistener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_list);
-       /* recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
+        recyclerView= findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        myAdapter= new MyAdapter(this, getMyList());
+        recyclerView.setAdapter(myAdapter);
 
-        // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
-        recyclerView.setAdapter(mAdapter);*/
+        LogOut = findViewById(R.id.logOutButton);
+
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(CartListActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+    private ArrayList<Model> getMyList(){
+
+        ArrayList<Model> models = new ArrayList<>();
+
+        Model m = new Model();
+        m.setTitle("News Feed");
+        m.setPrice("20$");
+        models.add(m);
+
+        return models;
+
+
+    }
+
 }

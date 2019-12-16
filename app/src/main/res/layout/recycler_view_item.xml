@@ -4,50 +4,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
 
-  <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-      android:id="@+id/addOrTake"
-      android:layout_width="99dp"
-      android:layout_height="36dp"
-      android:layout_marginEnd="16dp"
-      android:layout_weight="1"
-      app:backGroundColor="@android:color/white"
-      app:finalNumber="100"
-      app:initialNumber="1"
-      app:layout_constraintBottom_toBottomOf="parent"
+    >
 
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.478"
-      app:textColor="@color/colorPrimaryDark"
-      app:textSize="10sp" />
-
-  <CheckBox
-      android:id="@+id/checkBox"
-      android:layout_width="202dp"
-      android:layout_height="50dp"
+  <RelativeLayout
+      android:layout_width="411dp"
+      android:layout_height="736dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="78dp"
-      android:text="Product"
-      android:textSize="24sp"
-      app:layout_constraintBottom_toTopOf="@+id/textView2"
-      app:layout_constraintEnd_toStartOf="@+id/addOrTake"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
 
-  <TextView
-      android:id="@+id/textView2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="50dp"
-      android:layout_marginEnd="205dp"
-      android:text="Price"
-      android:textSize="18sp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:padding="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/addOrTake"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+      app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/productImage"
+        android:src="@mipmap/ic_launcher"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/product"
+        android:text="Title"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/productImage"
+        android:layout_toEndOf="@+id/productImage"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/productImage"
+        android:layout_toRightOf="@+id/productImage"
+        android:text="Price"
+        android:textColor="#a9a9a9"
+        android:textSize="18sp"
+        android:layout_below="@+id/product"
+
+        />
+
+
+  </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.fillmycart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -26,11 +25,11 @@ public class CartListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_list);
 
-        recyclerView= findViewById(R.id.recyclerView);
+        /*recyclerView= findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         myAdapter= new MyAdapter(this, getMyList());
-        recyclerView.setAdapter(myAdapter);
+        recyclerView.setAdapter(myAdapter);*/
 
 
         pluss = findViewById(R.id.logOutButton);
@@ -38,8 +37,7 @@ public class CartListActivity extends AppCompatActivity {
         pluss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(CartListActivity.this, CustomerActivity.class);
+                Intent intent = new Intent(CartListActivity.this, ProductsActivity.class);
                 startActivity(intent);
             }
         });

@@ -32,6 +32,18 @@ public class CartListActivity extends AppCompatActivity {
         myAdapter= new MyAdapter(this, getMyList());
         recyclerView.setAdapter(myAdapter);
 
+
+        pluss = findViewById(R.id.logOutButton);
+
+        pluss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(CartListActivity.this, CustomerActivity.class);
+                startActivity(intent);
+            }
+        });
+
         LogOut = findViewById(R.id.logOutButton);
 
         LogOut.setOnClickListener(new View.OnClickListener() {
@@ -43,15 +55,6 @@ public class CartListActivity extends AppCompatActivity {
             }
         });
 
-        pluss = findViewById(R.id.plus);
-
-        pluss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CartListActivity.this, ProductsActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private ArrayList<Model> getMyList(){

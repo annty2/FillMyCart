@@ -44,6 +44,10 @@ public class SignupActivity extends AppCompatActivity {
                     email.setError("please enter email..");
                     email.requestFocus();
                 }
+                else if(!(emailstr.contains("@") && emailstr.contains("."))) {
+                    email.setError("email is invalid!");
+                    email.requestFocus();
+                }
                 else if(password.isEmpty()) {
                     pass.setError("please enter password..");
                     pass.requestFocus();

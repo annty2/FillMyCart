@@ -17,6 +17,7 @@ public class CartListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapter myAdapter;
     Button LogOut;
+    Button pluss;
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStatelistener;
 
@@ -42,6 +43,15 @@ public class CartListActivity extends AppCompatActivity {
             }
         });
 
+        pluss = findViewById(R.id.plus);
+
+        pluss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CartListActivity.this, ProductsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private ArrayList<Model> getMyList(){

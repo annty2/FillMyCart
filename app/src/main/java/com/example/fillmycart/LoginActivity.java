@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                String emailstr = email.getText().toString();
+                String password = pass.getText().toString();
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if(mFirebaseUser != null) {
                     Toast.makeText(LoginActivity.this,"you are logged in",Toast.LENGTH_SHORT).show();
@@ -70,11 +72,10 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
-                                Toast.makeText(LoginActivity.this,"Login error, please Login again.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"account does not exist, please try again.",Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                Intent intTohome = new Intent(LoginActivity.this,LoginActivity.class);
-                                startActivity(intTohome);
+                                Toast.makeText(LoginActivity.this,"Login failed, please Login again.",Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

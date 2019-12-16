@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if(mFirebaseUser != null) {
                     Toast.makeText(LoginActivity.this,"you are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this,CartListActivity.class);
+                    Intent i = new Intent(LoginActivity.this,test.class);
                     startActivity(i);
                 }
                 else {

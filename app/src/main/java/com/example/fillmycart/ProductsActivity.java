@@ -1,21 +1,18 @@
 package com.example.fillmycart;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
 
 public class ProductsActivity extends AppCompatActivity {
 
-    private TextView _fruit,_milk,_bread,_frozen,_meatAndFish,_sale;
-    private  TextView _Canning,_drinks,_candy,_Cleaners,_cosmeticsm,_shampo;
+   // private TextView _fruit,_milk,_bread,_frozen,_meatAndFish,_sale;
+    //private  TextView _Canning,_drinks,_candy,_Cleaners,_cosmeticsm,_shampo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-        _fruit = (TextView) findViewById(R.id.fruit_veg);
+      /*  _fruit = (TextView) findViewById(R.id.fruit_veg);
         _milk = (TextView) findViewById(R.id.milk_eggs);
         _bread = (TextView) findViewById(R.id.bread);
         _frozen = (TextView) findViewById(R.id.frozen);
@@ -146,7 +143,7 @@ public class ProductsActivity extends AppCompatActivity {
                 intent.putExtra("category", "מבצעים");
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 

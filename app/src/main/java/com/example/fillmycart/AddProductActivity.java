@@ -81,6 +81,12 @@ public class AddProductActivity extends AppCompatActivity {
                                         Toast.LENGTH_LONG).show();
                             }
                         });
+
+
+                //clear the text from the fields
+                categoryEditText.getText().clear();
+                productEditText.getText().clear();
+                priceEditText.getText().clear();
             }
         }
 

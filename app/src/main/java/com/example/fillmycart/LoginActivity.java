@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 String emailstr = email.getText().toString();
                 if(mFirebaseUser != null) {
-                    if(emailstr.equals("danivngopro@gmail.com")) {
-                        Toast.makeText(LoginActivity.this, "Hello, Daniel", Toast.LENGTH_SHORT).show();
+                    if(emailstr.equals("danivngopro@gmail.com")||emailstr.equals("anna@gmail.com")||emailstr.equals("avi@gmail.com")) {
+                        Toast.makeText(LoginActivity.this, "Hello, Welcome Back!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(LoginActivity.this, MangerActionActivity.class);
                         startActivity(i);
                     }

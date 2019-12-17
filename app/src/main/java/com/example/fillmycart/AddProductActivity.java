@@ -1,31 +1,26 @@
 package com.example.fillmycart;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.firebase.client.Firebase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    String category, productName, price;
-
     EditText categoryEditText, productEditText, priceEditText;
-    Button addButton;
+    Button addButton, returnToMenu;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-
-    Product product;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,43 +31,58 @@ public class AddProductActivity extends AppCompatActivity {
         productEditText= (EditText)findViewById(R.id.product_name);
         priceEditText= (EditText)findViewById(R.id.product_price);
         addButton= (Button) findViewById(R.id.addButton);
+        returnToMenu=(Button) findViewById(R.id.returnButton);
 
-        category= categoryEditText.getText().toString().trim();
-        productName= productEditText.getText().toString().trim();
-        price= priceEditText.getText().toString().trim();
-
-
+        Firebase.setAndroidContext(this);
         mFirebaseDatabase= FirebaseDatabase.getInstance();
-        myRef=FirebaseDatabase.getInstance().getReference();
-        product= new Product(category,productName,price);
 
-
-
-
-    }
-
-    public void insert (View view){
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
+        returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.hasChild("Products")) {
-                  
-                    Toast.makeText(AddProductActivity.this, "Added to firebase successfully!",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(AddProductActivity.this, "Not added to firebase!",Toast.LENGTH_LONG).show();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(View view) {
+                Intent intent = new Intent(AddProductActivity.this , MangerActionActivity.class);
+                startActivity(intent);
             }
         });
+
     }
+
+
+    //when add is pressed, add the product by category
+    public void insert (View v){
+        Toast.makeText(AddProductActivity.this, "The button was pressed", Toast.LENGTH_SHORT).show();
+
+            //check if one of the fields is empty' if it is send a toast
+            if(categoryEditText.getText().toString().equals(""))
+                Toast.makeText(AddProductActivity.this, "Category is null!",
+                        Toast.LENGTH_LONG).show();
+            else if(productEditText.getText().toString().equals(""))
+                Toast.makeText(AddProductActivity.this, "Product name is null!",
+                        Toast.LENGTH_LONG).show();
+            else if(priceEditText.getText().toString().equals(""))
+                Toast.makeText(AddProductActivity.this, "Price is null!",
+                        Toast.LENGTH_LONG).show();
+
+            else {
+                //add to firebase
+                myRef = FirebaseDatabase.getInstance().getReference().child("Products").child(categoryEditText.getText().toString())
+                        .child(productEditText.getText().toString());
+                myRef.child("Price").setValue(priceEditText.getText().toString())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                Toast.makeText(AddProductActivity.this,"Failed adding item",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        }
 
 
 }

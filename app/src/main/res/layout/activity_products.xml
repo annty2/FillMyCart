@@ -11,13 +11,22 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/goBackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Go Back To List"
-        />
+        android:onClick="backToList"
+        android:text="Go Back To List" />
+
+    <Button
+        android:id="@+id/addProductButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/goBackButton"
+        android:onClick="addItem"
+        android:text="Can't find your Item? Add it" />
 
 
 

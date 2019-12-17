@@ -29,6 +29,14 @@ public class MangerActionActivity extends AppCompatActivity {
             }
         });
 
+        _list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MangerActionActivity.this , CartListActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }

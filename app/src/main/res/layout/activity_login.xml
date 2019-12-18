@@ -53,13 +53,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="No account yet? Create one"
+        android:text="Create one"
+        android:textColor="#0B1DAF"
         android:textSize="16dip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.667"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintVertical_bias="0.316" />
 
     <TextView
         android:id="@+id/Logo"
@@ -76,6 +78,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         app:layout_constraintVertical_bias="0.566" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="58dp"
+
+        android:layout_marginBottom="80dp"
+        android:text="No account yet?"
+        android:textSize="16dip"
+        app:layout_constraintBottom_toTopOf="@+id/Logo"
+        app:layout_constraintEnd_toStartOf="@+id/gotosignup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
 
 
 </android.support.constraint.ConstraintLayout>

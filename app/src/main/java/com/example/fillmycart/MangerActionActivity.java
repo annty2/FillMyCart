@@ -8,16 +8,16 @@ import android.widget.Button;
 
 public class MangerActionActivity extends AppCompatActivity {
 
-    private Button _remove,_add,_productApprove,_priceUpdate,_list;
+    private Button _approveAdmin,_add,_productApprove,_productUpdate,_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manger_action);
 
-        _remove = (Button)findViewById(R.id.deleteButton);
+        _approveAdmin = (Button)findViewById(R.id.approveAdminButton);
         _add = (Button)findViewById(R.id.addButton);
         _productApprove = (Button)findViewById(R.id.approveButton);
-        _priceUpdate = (Button)findViewById(R.id.updateButton);
+        _productUpdate = (Button)findViewById(R.id.updateButton);
         _list = (Button)findViewById(R.id.makeListButton);
 
 

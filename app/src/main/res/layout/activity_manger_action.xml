@@ -27,11 +27,11 @@
         android:layout_marginTop="60dp"
         />
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/approveAdminButton"
         android:layout_width="360dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="Delete a product"
+        android:text="Approve an admin"
         android:textSize="24dp"
         android:layout_below="@+id/addButton"
         android:layout_marginTop="20dp"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="Approve a product"
         android:textSize="24dp"
-        android:layout_below="@+id/deleteButton"
+        android:layout_below="@+id/approveAdminButton"
         android:layout_marginTop="20dp"
         />
 
@@ -52,7 +52,7 @@
         android:layout_width="360dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="Update prices"
+        android:text="Update products"
         android:textSize="24dp"
         android:layout_below="@+id/approveButton"
         android:layout_marginTop="20dp"
@@ -68,6 +68,8 @@
         android:layout_below="@+id/updateButton"
         android:layout_marginTop="20dp"
         />
+
+
 
 
 

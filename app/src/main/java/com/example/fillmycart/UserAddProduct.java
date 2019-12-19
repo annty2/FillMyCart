@@ -63,8 +63,9 @@ public class UserAddProduct extends AppCompatActivity {
 
         else {
             //add to firebase
-            myRef = FirebaseDatabase.getInstance().getReference().child("Pending").child("Products").child(categoryEditText.getText().toString())
+            myRef = FirebaseDatabase.getInstance().getReference().child("Pending").child(categoryEditText.getText().toString())
                     .child(productEditText.getText().toString());
+            myRef.child("ProductName").setValue(productEditText.getText().toString());
             myRef.child("Price").setValue(priceEditText.getText().toString())
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

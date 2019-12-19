@@ -11,11 +11,10 @@
     >
 
   <RelativeLayout
-      android:layout_width="411dp"
-      android:layout_height="736dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
 
-      android:layout_marginTop="16dp"
       android:layout_marginEnd="16dp"
       android:layout_marginBottom="16dp"
       android:padding="16dp"
@@ -25,31 +24,30 @@
       app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
+        android:id="@+id/productImage"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:id="@+id/productImage"
-        android:src="@mipmap/ic_launcher"
-        />
+        android:src="@mipmap/ic_launcher" />
 
 
     <TextView
+        android:id="@+id/product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/product"
-        android:text="Title"
-        android:textSize="22sp"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/productImage"
-        android:layout_toEndOf="@+id/productImage"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/productImage"
+        android:layout_toRightOf="@+id/productImage"
+        android:text="Title"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/product_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/product"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="5dp"
@@ -58,7 +56,6 @@
         android:text="Price"
         android:textColor="#a9a9a9"
         android:textSize="18sp"
-        android:layout_below="@+id/product"
 
         />
 

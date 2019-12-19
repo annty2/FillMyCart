@@ -5,6 +5,10 @@ public class Product {
     String Name;
     String price;
 
+
+    public Product() {
+    }
+
     public Product(String category, String name, String price) {
         Category = category;
         Name = name;

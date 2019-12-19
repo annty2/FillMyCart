@@ -49,7 +49,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     //when add is pressed, add the product by category
     public void insert (View v){
-        Toast.makeText(AddProductActivity.this, "The button was pressed", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(AddProductActivity.this, "The button was pressed", Toast.LENGTH_SHORT).show();
 
             //check if one of the fields is empty' if it is send a toast
             if(categoryEditText.getText().toString().equals(""))
@@ -66,6 +66,7 @@ public class AddProductActivity extends AppCompatActivity {
                 //add to firebase
                 myRef = FirebaseDatabase.getInstance().getReference().child("Products").child(categoryEditText.getText().toString())
                         .child(productEditText.getText().toString());
+                myRef.child("CategoryName").setValue(categoryEditText.getText().toString());
                 myRef.child("ProductName").setValue(productEditText.getText().toString());
                 myRef.child("Price").setValue(priceEditText.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

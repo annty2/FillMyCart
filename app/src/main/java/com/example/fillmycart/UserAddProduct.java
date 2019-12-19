@@ -48,7 +48,7 @@ public class UserAddProduct extends AppCompatActivity {
 
     //when add is pressed, add the product by category
     public void insert (View v){
-        Toast.makeText(UserAddProduct.this, "Add button pressed",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(UserAddProduct.this, "Add button pressed",Toast.LENGTH_SHORT).show();
 
         //check if one of the fields is empty' if it is send a toast
         if(categoryEditText.getText().toString().equals(""))
@@ -65,13 +65,14 @@ public class UserAddProduct extends AppCompatActivity {
             //add to firebase
             myRef = FirebaseDatabase.getInstance().getReference().child("Pending").child(categoryEditText.getText().toString())
                     .child(productEditText.getText().toString());
+            myRef.child("CategoryName").setValue(categoryEditText.getText().toString());
             myRef.child("ProductName").setValue(productEditText.getText().toString());
             myRef.child("Price").setValue(priceEditText.getText().toString())
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(UserAddProduct.this,"Item added! Item will be confirmed soon!",
-                                    Toast.LENGTH_LONG).show();
+                            //Toast.makeText(UserAddProduct.this,"Item added! Item will be confirmed soon!",
+                                   // Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

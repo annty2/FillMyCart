@@ -40,6 +40,7 @@
         android:id="@+id/btnSignin"
         android:layout_width="349dp"
         android:layout_height="wrap_content"
+        android:onClick="signIn"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

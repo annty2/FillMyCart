@@ -3,6 +3,21 @@ package com.example.fillmycart;
 public class PendingProduct {
     private String Price;
     private String name;
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public PendingProduct(String price, String name, String category) {
+        Price = price;
+        this.name = name;
+        this.category = category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public PendingProduct() {
     }

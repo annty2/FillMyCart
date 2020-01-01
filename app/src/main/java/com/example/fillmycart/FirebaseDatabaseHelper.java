@@ -1,7 +1,9 @@
 package com.example.fillmycart;
 
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,6 +16,7 @@ import java.util.List;
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDataBase;
     private DatabaseReference mRef;
+    private DatabaseReference mRef2;
     private List<PendingProduct> pendingProducts = new ArrayList<>();
 
     public interface DataStatus{
@@ -26,6 +29,7 @@ public class FirebaseDatabaseHelper {
     public FirebaseDatabaseHelper() {
         mDataBase = FirebaseDatabase.getInstance();
         mRef = mDataBase.getReference("Pending");
+        mRef2 = mDataBase.getReference("Products");
     }
 
     public void readPending(final DataStatus dataStatus){
@@ -48,5 +52,29 @@ public class FirebaseDatabaseHelper {
 
             }
         });
+    }
+
+    public void deletePending(String key, final DataStatus dataStatus) {
+        mRef.child(key).setValue(null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsDeleted();
+                    }
+                });
+    }
+    public void updatePending(String key,PendingProduct pendingProduct, final DataStatus dataStatus) {
+        mRef.child(key).setValue(pendingProduct)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsUpdated();
+                    }
+                });
+    }
+    public void addProduct(String str, PendingProduct pendingProduct,final DataStatus dataStatus){
+        String key = mRef2.push().getKey();
+        mRef2.child(key).setValue(pendingProduct);
+        deletePending(str,dataStatus);
     }
 }

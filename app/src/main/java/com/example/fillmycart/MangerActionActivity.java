@@ -37,7 +37,13 @@ public class MangerActionActivity extends AppCompatActivity {
             }
         });
 
-
+        _productApprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MangerActionActivity.this , PendingList_Activity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

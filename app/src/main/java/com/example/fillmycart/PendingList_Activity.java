@@ -1,19 +1,31 @@
 package com.example.fillmycart;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
 public class PendingList_Activity extends AppCompatActivity {
-
+    private Button backbtn;
     private RecyclerView mrecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_list_);
+        backbtn = (Button) findViewById(R.id.bkbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PendingList_Activity.this, MangerActionActivity.class);
+                startActivity(intent);
+            }
+        });
         mrecyclerView = (RecyclerView) findViewById(R.id.recylerview_pending);
+
         new FirebaseDatabaseHelper().readPending(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
@@ -35,5 +47,7 @@ public class PendingList_Activity extends AppCompatActivity {
 
             }
         });
+
+
     }
 }

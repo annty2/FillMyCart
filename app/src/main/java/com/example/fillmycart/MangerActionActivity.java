@@ -14,7 +14,6 @@ public class MangerActionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manger_action);
 
-        _approveAdmin = (Button)findViewById(R.id.approveAdminButton);
         _add = (Button)findViewById(R.id.addButton);
         _productApprove = (Button)findViewById(R.id.approveButton);
         _productUpdate = (Button)findViewById(R.id.updateButton);
@@ -44,6 +43,14 @@ public class MangerActionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        _productUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MangerActionActivity.this , ProductListActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PendingDetailsActivity"></activity>
+        <activity android:name=".ProductsDetailsActivity"></activity>
+        <activity android:name=".FirebaseDatabaseHelperProducts" />
+        <activity android:name=".ProductListActivity" />
+        <activity android:name=".ProductList_Activity" />
+        <activity android:name=".PendingDetailsActivity" />
         <activity android:name=".PendingList_Activity" />
         <activity android:name=".UserAddProduct" />
         <activity android:name=".CartListActivity" />

@@ -37,8 +37,8 @@ public class PendingRecyclerView_Config {
         }
 
         public void bind(PendingProduct pendingProduct, String key) {
-            mProductname.setText(pendingProduct.getProductName());
-            mPrice.setText(pendingProduct.getPrice());
+            mProductname.setText(pendingProduct.getName());
+            mPrice.setText("Price: " + pendingProduct.getPrice());
             this.key = key;
         }
     }

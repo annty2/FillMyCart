@@ -1,8 +1,8 @@
 package com.example.fillmycart;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,38 +17,37 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UserAddProduct extends AppCompatActivity {
 
     EditText categoryEditText, productEditText, priceEditText;
-    Button addButton, returnToProducts;
+    Button addButton, returnToMenu;
 
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_add_product);
+        setContentView(R.layout.activity_add_product);
 
         categoryEditText= (EditText)findViewById(R.id.category_name);
         productEditText= (EditText)findViewById(R.id.product_name);
         priceEditText= (EditText)findViewById(R.id.product_price);
         addButton= (Button) findViewById(R.id.addButton);
-        returnToProducts=(Button) findViewById(R.id.returnButton);
-
+        returnToMenu=(Button) findViewById(R.id.returnButton);
+        myRef = FirebaseDatabase.getInstance().getReference("Pending");
         Firebase.setAndroidContext(this);
-        mFirebaseDatabase= FirebaseDatabase.getInstance();
 
-        returnToProducts.setOnClickListener(new View.OnClickListener() {
+        returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserAddProduct.this , ProductsActivity.class);
+                Intent intent = new Intent(UserAddProduct.this , CartListActivity.class);
                 startActivity(intent);
             }
         });
 
     }
 
+
     //when add is pressed, add the product by category
     public void insert (View v){
-       // Toast.makeText(UserAddProduct.this, "Add button pressed",Toast.LENGTH_SHORT).show();
+        // Toast.makeText(AddProductActivity.this, "The button was pressed", Toast.LENGTH_SHORT).show();
 
         //check if one of the fields is empty' if it is send a toast
         if(categoryEditText.getText().toString().equals(""))
@@ -63,16 +62,13 @@ public class UserAddProduct extends AppCompatActivity {
 
         else {
             //add to firebase
-            myRef = FirebaseDatabase.getInstance().getReference().child("Pending").child(categoryEditText.getText().toString())
-                    .child(productEditText.getText().toString());
-            myRef.child("CategoryName").setValue(categoryEditText.getText().toString());
-            myRef.child("ProductName").setValue(productEditText.getText().toString());
-            myRef.child("Price").setValue(priceEditText.getText().toString())
+            Product p = new Product(categoryEditText.getText().toString(),productEditText.getText().toString(),priceEditText.getText().toString());
+            myRef.push().setValue(p)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            //Toast.makeText(UserAddProduct.this,"Item added! Item will be confirmed soon!",
-                                   // Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserAddProduct.this,"Item was added successfully!!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -83,15 +79,13 @@ public class UserAddProduct extends AppCompatActivity {
                         }
                     });
 
+
             //clear the text from the fields
             categoryEditText.getText().clear();
             productEditText.getText().clear();
             priceEditText.getText().clear();
-
         }
     }
 
+
 }
-
-
-

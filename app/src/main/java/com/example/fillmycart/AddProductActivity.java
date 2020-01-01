@@ -19,7 +19,6 @@ public class AddProductActivity extends AppCompatActivity {
     EditText categoryEditText, productEditText, priceEditText;
     Button addButton, returnToMenu;
 
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
 
     @Override
@@ -32,9 +31,8 @@ public class AddProductActivity extends AppCompatActivity {
         priceEditText= (EditText)findViewById(R.id.product_price);
         addButton= (Button) findViewById(R.id.addButton);
         returnToMenu=(Button) findViewById(R.id.returnButton);
-
+        myRef = FirebaseDatabase.getInstance().getReference("Products");
         Firebase.setAndroidContext(this);
-        mFirebaseDatabase= FirebaseDatabase.getInstance();
 
         returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +62,8 @@ public class AddProductActivity extends AppCompatActivity {
 
             else {
                 //add to firebase
-                myRef = FirebaseDatabase.getInstance().getReference().child("Products").child(categoryEditText.getText().toString())
-                        .child(productEditText.getText().toString());
-                myRef.child("CategoryName").setValue(categoryEditText.getText().toString());
-                myRef.child("ProductName").setValue(productEditText.getText().toString());
-                myRef.child("Price").setValue(priceEditText.getText().toString())
+                Product p = new Product(categoryEditText.getText().toString(),productEditText.getText().toString(),priceEditText.getText().toString());
+                myRef.push().setValue(p)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

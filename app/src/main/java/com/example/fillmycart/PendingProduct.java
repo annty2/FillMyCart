@@ -2,14 +2,14 @@ package com.example.fillmycart;
 
 public class PendingProduct {
     private String Price;
-    private String ProductName;
-
-    public PendingProduct(String price, String productName) {
-        this.Price = price;
-        ProductName = productName;
-    }
+    private String name;
 
     public PendingProduct() {
+    }
+
+    public PendingProduct(String price, String name) {
+        Price = price;
+        this.name = name;
     }
 
     public String getPrice() {
@@ -17,14 +17,14 @@ public class PendingProduct {
     }
 
     public void setPrice(String price) {
-        this.Price = price;
+        Price = price;
     }
 
-    public String getProductName() {
-        return ProductName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        ProductName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

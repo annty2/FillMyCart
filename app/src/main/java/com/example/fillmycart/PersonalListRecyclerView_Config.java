@@ -44,7 +44,7 @@ public class PersonalListRecyclerView_Config {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(context, UsersDetailsActivity.class);
+                    Intent i = new Intent(context, PersonalListDetailsActivity.class);
                     i.putExtra("key",key);
                     i.putExtra("mProductname",mProductname.getText().toString());
                     i.putExtra("mCategory", mCategory.getText().toString());

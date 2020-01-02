@@ -1,5 +1,6 @@
 package com.example.fillmycart;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +15,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Random;
+
 public class UserAddProduct extends AppCompatActivity {
 
     EditText categoryEditText, productEditText, priceEditText;
     Button addButton, returnToMenu;
 
     private DatabaseReference myRef;
+
+    NotificationHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,8 @@ public class UserAddProduct extends AppCompatActivity {
         returnToMenu=(Button) findViewById(R.id.returnButton);
         myRef = FirebaseDatabase.getInstance().getReference("Pending");
         Firebase.setAndroidContext(this);
+
+        helper = new NotificationHelper(this);
 
         returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +74,15 @@ public class UserAddProduct extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(UserAddProduct.this,"Item was added successfully!!",
-                                    Toast.LENGTH_LONG).show();
+                            Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item added successfully!wait for managers to approve");
+                            helper.getManager().notify(new Random().nextInt(), builder.build());
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(Exception e) {
-                            Toast.makeText(UserAddProduct.this,"Failed adding item",
-                                    Toast.LENGTH_LONG).show();
+                            Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item not added!");
+                            helper.getManager().notify(new Random().nextInt(), builder.build());
                         }
                     });
 

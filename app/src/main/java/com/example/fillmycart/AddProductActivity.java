@@ -77,18 +77,13 @@ public class AddProductActivity extends AppCompatActivity {
                                 Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item added successfully!");
                                 helper.getManager().notify(new Random().nextInt(), builder.build());
 
-
-
-
-                                //Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
-                                        //Toast.LENGTH_LONG).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(Exception e) {
-                                Toast.makeText(AddProductActivity.this,"Failed adding item",
-                                        Toast.LENGTH_LONG).show();
+                                Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item not added!");
+                                helper.getManager().notify(new Random().nextInt(), builder.build());
                             }
                         });
 

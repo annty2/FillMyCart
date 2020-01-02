@@ -1,7 +1,8 @@
 package com.example.fillmycart;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Notification;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
+import java.util.Random;
 
 public class ProductsDetailsActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class ProductsDetailsActivity extends AppCompatActivity {
     private String name;
     private String pprice;
     private String key;
+    NotificationHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class ProductsDetailsActivity extends AppCompatActivity {
         updatebtn = (Button) findViewById(R.id.updateproductpending);
         deletebtn = (Button) findViewById(R.id.DeclineProduct);
         backbth = (Button) findViewById(R.id.Backbtn);
+
+        helper = new NotificationHelper(this);
 
         updatebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +110,10 @@ public class ProductsDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void DataIsDeleted() {
-                        Toast.makeText(ProductsDetailsActivity.this, "item declined.", Toast.LENGTH_SHORT).show();
+                        String productName= pname.getText().toString();
+
+                        Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", productName+" deleted successfully!");
+                        helper.getManager().notify(new Random().nextInt(), builder.build());
                         finish();return;
                     }
                 });

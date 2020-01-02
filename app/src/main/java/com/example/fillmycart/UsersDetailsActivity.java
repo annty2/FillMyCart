@@ -1,16 +1,17 @@
 package com.example.fillmycart;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Notification;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
+import java.util.Random;
 
 public class UsersDetailsActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class UsersDetailsActivity extends AppCompatActivity {
     private String pprice;
     private String key;
     private String email;
+    NotificationHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class UsersDetailsActivity extends AppCompatActivity {
         additem = (Button) findViewById(R.id.AddItem);
         backbth = (Button) findViewById(R.id.Backbtn);
 
+        helper = new NotificationHelper(this);
+
         additem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +77,12 @@ public class UsersDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void DataIsUpdated() {
-                        Toast.makeText(UsersDetailsActivity.this, "This item has been updated successfuly!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(UsersDetailsActivity.this, "This item has been updated successfuly!", Toast.LENGTH_SHORT).show();
+
+                        String productName= pname.getText().toString();
+
+                        Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", productName+" updated successfully!");
+                        helper.getManager().notify(new Random().nextInt(), builder.build());
                     }
 
                     @Override

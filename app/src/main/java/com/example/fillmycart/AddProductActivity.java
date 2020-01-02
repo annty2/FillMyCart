@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -131,11 +133,6 @@ public class AddProductActivity extends AppCompatActivity {
                 timeAndDate();
                 uploadImage();
                 addInfoToDB();
-
-                //clear the text from the fields
-                categoryEditText.getText().clear();
-                productEditText.getText().clear();
-                priceEditText.getText().clear();
             }
     }
 
@@ -224,6 +221,8 @@ public class AddProductActivity extends AppCompatActivity {
                         Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item added successfully!");
                         helper.getManager().notify(new Random().nextInt(), builder.build());
 
+                        Intent intent = new Intent(AddProductActivity.this,MangerActionActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -232,6 +231,11 @@ public class AddProductActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item not added!");
                         helper.getManager().notify(new Random().nextInt(), builder.build());
+
+                        //clear the text from the fields
+                        categoryEditText.getText().clear();
+                        productEditText.getText().clear();
+                        priceEditText.getText().clear();
                     }
                 });
 

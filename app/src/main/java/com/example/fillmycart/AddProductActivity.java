@@ -1,5 +1,6 @@
 package com.example.fillmycart;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Random;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -20,6 +22,8 @@ public class AddProductActivity extends AppCompatActivity {
     Button addButton, returnToMenu;
 
     private DatabaseReference myRef;
+
+    NotificationHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,9 @@ public class AddProductActivity extends AppCompatActivity {
         addButton= (Button) findViewById(R.id.addButton);
         returnToMenu=(Button) findViewById(R.id.returnButton);
         myRef = FirebaseDatabase.getInstance().getReference("Products");
-        Firebase.setAndroidContext(this);
+
+
+        helper = new NotificationHelper(this);
 
         returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +73,15 @@ public class AddProductActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
-                                        Toast.LENGTH_LONG).show();
+
+                                Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item added successfully!");
+                                helper.getManager().notify(new Random().nextInt(), builder.build());
+
+
+
+
+                                //Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
+                                        //Toast.LENGTH_LONG).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -86,6 +99,8 @@ public class AddProductActivity extends AppCompatActivity {
                 priceEditText.getText().clear();
             }
         }
+
+
 
 
 }

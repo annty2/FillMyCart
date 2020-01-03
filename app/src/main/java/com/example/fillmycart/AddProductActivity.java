@@ -69,8 +69,9 @@ public class AddProductActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
-                                    Toast.LENGTH_LONG).show();
+                            openDialog();
+//                            Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
+//                                    Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -88,6 +89,9 @@ public class AddProductActivity extends AppCompatActivity {
             priceEditText.getText().clear();
         }
     }
-
+    public void openDialog() {
+        DialogAddtoGlobalList dialogAddtoGlobalList = new DialogAddtoGlobalList();
+        dialogAddtoGlobalList.show(getSupportFragmentManager(),"item has been added");
+    }
 
 }

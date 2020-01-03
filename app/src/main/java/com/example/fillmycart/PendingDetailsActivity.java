@@ -145,11 +145,11 @@ public class PendingDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void DataIsDeleted() {
-                        Toast.makeText(PendingDetailsActivity.this, "item declined.", Toast.LENGTH_SHORT).show();
                         finish();return;
                     }
                 });
             }
         });
     }
+
 }

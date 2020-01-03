@@ -83,6 +83,7 @@ public class UsersDetailsActivity extends AppCompatActivity {
 
                         Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", productName+" updated successfully!");
                         helper.getManager().notify(new Random().nextInt(), builder.build());
+                        openDialog();
                     }
 
                     @Override
@@ -102,5 +103,9 @@ public class UsersDetailsActivity extends AppCompatActivity {
         });
 
 
+    }
+    public void openDialog() {
+        DialogItemAdded dialogItemAdded = new DialogItemAdded();
+        dialogItemAdded.show(getSupportFragmentManager(),"item has been added");
     }
 }

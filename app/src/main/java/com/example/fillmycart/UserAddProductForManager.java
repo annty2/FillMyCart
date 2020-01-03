@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
-public class UserAddProduct extends AppCompatActivity {
+public class UserAddProductForManager extends AppCompatActivity {
 
     EditText categoryEditText, productEditText, priceEditText;
     Button addButton, returnToMenu;
@@ -29,14 +29,14 @@ public class UserAddProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_user_add_product_for_manager);
 
         categoryEditText= (EditText)findViewById(R.id.category_name);
         productEditText= (EditText)findViewById(R.id.product_name);
         priceEditText= (EditText)findViewById(R.id.product_price);
         addButton= (Button) findViewById(R.id.addButton);
         returnToMenu=(Button) findViewById(R.id.returnButton);
-        myRef = FirebaseDatabase.getInstance().getReference("Pending");
+        myRef = FirebaseDatabase.getInstance().getReference("Products");
         Firebase.setAndroidContext(this);
         email = getIntent().getStringExtra("email");
         helper = new NotificationHelper(this);
@@ -44,7 +44,7 @@ public class UserAddProduct extends AppCompatActivity {
         returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserAddProduct.this , CartListActivity.class);
+                Intent intent = new Intent(UserAddProductForManager.this , CarListActivityManager.class);
                 intent.putExtra("email", email);
                 startActivity(intent);
             }
@@ -59,13 +59,13 @@ public class UserAddProduct extends AppCompatActivity {
 
         //check if one of the fields is empty' if it is send a toast
         if(categoryEditText.getText().toString().equals(""))
-            Toast.makeText(UserAddProduct.this, "Category is null!",
+            Toast.makeText(UserAddProductForManager.this, "Category is null!",
                     Toast.LENGTH_LONG).show();
         else if(productEditText.getText().toString().equals(""))
-            Toast.makeText(UserAddProduct.this, "Product name is null!",
+            Toast.makeText(UserAddProductForManager.this, "Product name is null!",
                     Toast.LENGTH_LONG).show();
         else if(priceEditText.getText().toString().equals(""))
-            Toast.makeText(UserAddProduct.this, "Price is null!",
+            Toast.makeText(UserAddProductForManager.this, "Price is null!",
                     Toast.LENGTH_LONG).show();
 
         else {

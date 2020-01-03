@@ -11,16 +11,19 @@ import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity {
     private Button backbtn;
+    private String email;
     private RecyclerView mrecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
         backbtn = (Button) findViewById(R.id.bkbtn);
+        email = getIntent().getStringExtra("email");
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductListActivity.this, MangerActionActivity.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });

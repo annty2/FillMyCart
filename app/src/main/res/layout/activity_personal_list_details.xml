@@ -13,6 +13,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textSize="20sp"
+        android:editable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +26,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/textview"
         android:textStyle="italic"
+        android:editable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pname"
@@ -54,6 +56,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="44dp"
         android:text="TextView"
+        android:editable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pprice" />
 

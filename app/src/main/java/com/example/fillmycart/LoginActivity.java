@@ -70,12 +70,13 @@ public class LoginActivity extends AppCompatActivity {
                         if(emailstr.equals("danivngopro@gmail.com")||emailstr.equals("anna@gmail.com")||emailstr.equals("avi@gmail.com")){
                             Toast.makeText(LoginActivity.this, "Hello, Welcome Back!", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(LoginActivity.this, MangerActionActivity.class);
+                            i.putExtra("email",email.getText().toString().split("@")[0]);
                             startActivity(i);
                         }
                         else {
                             Toast.makeText(LoginActivity.this, "you are logged in", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(LoginActivity.this, CartListActivity.class);
-                            i.putExtra("email",email.getText().toString());
+                            i.putExtra("email",email.getText().toString().split("@")[0]);
                             startActivity(i);
                         }
                     }

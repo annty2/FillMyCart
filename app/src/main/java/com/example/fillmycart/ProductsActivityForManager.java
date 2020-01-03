@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-public class ProductsActivity extends AppCompatActivity {
+public class ProductsActivityForManager extends AppCompatActivity {
 
 
     Button goBack, addProduct;
@@ -20,16 +20,16 @@ public class ProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_products_for_manager);
         email = getIntent().getStringExtra("email");
 
         goBack= (Button)findViewById(R.id.goBackButton);
         addProduct= (Button)findViewById(R.id.addProductButton);
         mrecyclerView = (RecyclerView) findViewById(R.id.recylerview_pending);
-            new FirebaseDatabaseHelperUsers().readPending(new FirebaseDatabaseHelperUsers.DataStatus() {
+        new FirebaseDatabaseHelperUsers().readPending(new FirebaseDatabaseHelperUsers.DataStatus() {
             @Override
             public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
-                new UsersRecyclerView_Config().setConfig(email,mrecyclerView,ProductsActivity.this,pendingProducts,keys);
+                new UsersRecyclerView_Config().setConfig(email,mrecyclerView,ProductsActivityForManager.this,pendingProducts,keys);
             }
 
             @Override
@@ -51,7 +51,7 @@ public class ProductsActivity extends AppCompatActivity {
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProductsActivity.this ,CartListActivity.class);
+                Intent intent = new Intent(ProductsActivityForManager.this ,CarListActivityManager.class);
                 intent.putExtra("email", email);
                 startActivity(intent);
             }
@@ -60,7 +60,7 @@ public class ProductsActivity extends AppCompatActivity {
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProductsActivity.this ,UserAddProduct.class);
+                Intent intent = new Intent(ProductsActivityForManager.this ,UserAddProductForManager.class);
                 intent.putExtra("email", email);
                 startActivity(intent);
             }

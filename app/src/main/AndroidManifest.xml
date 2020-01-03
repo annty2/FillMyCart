@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PersonalListDetailsActivity"></activity>
+        <activity android:name=".ProductsActivityForManager"></activity>
+        <activity android:name=".UserAddProductForManager" />
+        <activity android:name=".CarListActivityManager" />
+        <activity android:name=".PersonalListDetailsActivity" />
         <activity android:name=".UsersDetailsActivity" />
         <activity android:name=".ProductsDetailsActivity" />
         <activity android:name=".FirebaseDatabaseHelperProducts" />

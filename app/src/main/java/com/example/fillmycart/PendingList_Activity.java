@@ -11,16 +11,19 @@ import java.util.List;
 
 public class PendingList_Activity extends AppCompatActivity {
     private Button backbtn;
+    private String email;
     private RecyclerView mrecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_list_);
+        email = getIntent().getStringExtra("email");
         backbtn = (Button) findViewById(R.id.bkbtn);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PendingList_Activity.this, MangerActionActivity.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });

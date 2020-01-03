@@ -9,6 +9,7 @@ import android.widget.Button;
 public class MangerActionActivity extends AppCompatActivity {
 
     private Button _approveAdmin,_add,_productApprove,_productUpdate,_list;
+    private String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,12 +19,13 @@ public class MangerActionActivity extends AppCompatActivity {
         _productApprove = (Button)findViewById(R.id.approveButton);
         _productUpdate = (Button)findViewById(R.id.updateButton);
         _list = (Button)findViewById(R.id.makeListButton);
-
+        email = getIntent().getStringExtra("email");
 
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MangerActionActivity.this , AddProductActivity.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -31,7 +33,8 @@ public class MangerActionActivity extends AppCompatActivity {
         _list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MangerActionActivity.this , CartListActivity.class);
+                Intent intent = new Intent(MangerActionActivity.this , CarListActivityManager.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -40,6 +43,7 @@ public class MangerActionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MangerActionActivity.this , PendingList_Activity.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -47,6 +51,7 @@ public class MangerActionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MangerActionActivity.this , ProductListActivity.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });

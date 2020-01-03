@@ -14,19 +14,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartListActivity extends AppCompatActivity {
+public class CarListActivityManager extends AppCompatActivity {
 
     private RecyclerView mrecyclerView;
     MyAdapter myAdapter;
     Button LogOut;
     Button pluss;
+    Button rtrntomenu;
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStatelistener;
     String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_list);
+        setContentView(R.layout.activity_car_list_manager);
         email = getIntent().getStringExtra("email");
 //        Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
         mrecyclerView = (RecyclerView) findViewById(R.id.recylerview_pending);
@@ -34,7 +35,7 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
                 //here i need to create another config file with only delete option and maybe add number of products.
-                new PersonalListRecyclerView_Config().setConfig(email, mrecyclerView,CartListActivity.this,pendingProducts,keys);
+                new PersonalListRecyclerView_Config().setConfig(email, mrecyclerView,CarListActivityManager.this,pendingProducts,keys);
             }
 
             @Override
@@ -54,11 +55,20 @@ public class CartListActivity extends AppCompatActivity {
         });
 
         pluss = findViewById(R.id.plus);
-
         pluss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartListActivity.this, ProductsActivity.class);
+                Intent intent = new Intent(CarListActivityManager.this, ProductsActivityForManager.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
+        rtrntomenu = findViewById(R.id.rtrntomenu);
+        rtrntomenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CarListActivityManager.this, MangerActionActivity.class);
                 intent.putExtra("email",email);
                 startActivity(intent);
             }
@@ -70,7 +80,7 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(CartListActivity.this, LoginActivity.class);
+                Intent intent = new Intent(CarListActivityManager.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

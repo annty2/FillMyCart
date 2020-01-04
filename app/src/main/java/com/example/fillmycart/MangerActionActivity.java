@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MangerActionActivity extends AppCompatActivity {
 
+    private Button LogOut;
     private Button _approveAdmin,_add,_productApprove,_productUpdate,_list;
     private String email;
     @Override
@@ -20,7 +23,16 @@ public class MangerActionActivity extends AppCompatActivity {
         _productUpdate = (Button)findViewById(R.id.updateButton);
         _list = (Button)findViewById(R.id.makeListButton);
         email = getIntent().getStringExtra("email");
+        LogOut = findViewById(R.id.lgoutbtn);
 
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MangerActionActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -60,9 +60,15 @@
         android:layout_marginTop="20dp"
         />
 
-
-
-
+    <Button
+        android:id="@+id/lgoutbtn"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/makeListButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="LogOut"
+        android:textSize="24dp" />
 
 
 </RelativeLayout>

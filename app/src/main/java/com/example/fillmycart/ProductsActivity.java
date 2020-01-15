@@ -85,7 +85,7 @@ public class ProductsActivity extends AppCompatActivity {
                                         String productName= s.getName();
                                         selected.remove(s);
 
-                                        openDialog();
+
 
                                     }
 
@@ -98,6 +98,7 @@ public class ProductsActivity extends AppCompatActivity {
 
 
                         }
+                        openDialog();
                         if (key.equals(" ")){
                             Toast.makeText(ProductsActivity.this, "No items were checked", Toast.LENGTH_LONG).show();
                         }

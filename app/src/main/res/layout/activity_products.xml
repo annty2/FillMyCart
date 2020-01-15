@@ -16,31 +16,46 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recylerview_pending"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"
+        android:layout_width="415dp"
+        android:layout_height="522dp"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/goBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="163dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="33dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="28dp"
         android:text="Back To List"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recylerview_pending" />
 
-        app:layout_constraintVertical_bias="0.161" />
+    <Button
+        android:id="@+id/addToListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="30dp"
+        android:text="Add To List"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/goBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/recylerview_pending" />
+
 </android.support.constraint.ConstraintLayout>

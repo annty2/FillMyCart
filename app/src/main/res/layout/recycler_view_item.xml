@@ -11,8 +11,8 @@
     >
 
   <RelativeLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="404dp"
+      android:layout_height="112dp"
       android:layout_marginStart="16dp"
 
       android:layout_marginEnd="16dp"
@@ -23,12 +23,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@mipmap/ic_launcher" />
-
 
     <TextView
         android:id="@+id/product"
@@ -36,8 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/productImage"
-        android:layout_toRightOf="@+id/productImage"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/checkBox"
+        android:layout_toRightOf="@+id/checkBox"
         android:text="Title"
         android:textColor="#000"
         android:textSize="22sp"
@@ -45,35 +40,47 @@
 
     <TextView
         android:id="@+id/product_description"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/product"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/productImage"
-        android:layout_toRightOf="@+id/productImage"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/addOrTake"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="0dp"
         android:text="Price"
-        android:textColor="#a9a9a9"
-        android:textSize="18sp"
+        android:textColor="#585454"
+        android:textSize="18sp" />
 
-        />
+    <TextView
+        android:id="@+id/product_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        tools:text="Category" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:checked="false"/>
 
     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
         android:id="@+id/addOrTake"
         android:layout_width="99dp"
         android:layout_height="36dp"
-        android:layout_marginLeft="-139dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="16dp"
-        android:layout_toRightOf="@+id/product_description"
+        android:layout_marginLeft="-106dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/product"
         android:layout_weight="1"
         app:backGroundColor="@android:color/white"
         app:finalNumber="100"
         app:initialNumber="1"
-
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintVertical_bias="0.478"
         app:textColor="@color/colorPrimaryDark"
         app:textSize="10sp" />

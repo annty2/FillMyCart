@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,10 +15,13 @@ import java.util.List;
 
 public class CartListActivity extends AppCompatActivity {
 
+    // The personal product list - User
+
     private RecyclerView mrecyclerView;
     MyAdapter myAdapter;
     Button LogOut;
     Button pluss;
+    Button buy;
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStatelistener;
     String email;
@@ -28,13 +30,75 @@ public class CartListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_list);
         email = getIntent().getStringExtra("email");
-//        Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
+
         mrecyclerView = (RecyclerView) findViewById(R.id.recylerview_pending);
+        buy= (Button)findViewById(R.id.buyButton);
+
+
+
+
         new FirebaseDatabaseHelperPersonalList(email).readPending(new FirebaseDatabaseHelperPersonalList.DataStatus() {
             @Override
-            public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
-                //here i need to create another config file with only delete option and maybe add number of products.
-                new PersonalListRecyclerView_Config().setConfig(email, mrecyclerView,CartListActivity.this,pendingProducts,keys);
+            public void DataIsLoaded(final List<PendingProduct> pendingProducts, final List<String> keys) {
+
+                PersonalListRecyclerView_Config.PendingAdapter p = new PersonalListRecyclerView_Config().setConfig(email, mrecyclerView,CartListActivity.this,pendingProducts,keys);
+
+
+
+                final ArrayList<PendingProduct> selected= p.getSelectedProducts();
+
+
+                buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String key = " ";
+
+                        for (final PendingProduct s : selected) {
+                            for (int i = 0; i < pendingProducts.size(); i++) {
+                                if (pendingProducts.get(i).getName().equals(s.getName())) {
+                                    key = keys.get(i);
+                                }
+
+
+                                new FirebaseDatabaseHelperPersonalList(email).deletePending(key, new FirebaseDatabaseHelperPersonalList.DataStatus() {
+                                    @Override
+                                    public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
+
+                                    }
+
+                                    @Override
+                                    public void DataIsInserted() {
+
+                                    }
+
+                                    @Override
+                                    public void DataIsUpdated() {
+
+                                    }
+
+                                    @Override
+                                    public void DataIsDeleted() {
+                                        String productName = s.getName();
+                                        Toast.makeText(CartListActivity.this, "deleted item: " + productName, Toast.LENGTH_LONG).show();
+                                            /*Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", productName+" deleted successfully!");
+                                            helper.getManager().notify(new Random().nextInt(), builder.build());*/
+                                        return;
+
+                                    }
+
+
+                                });
+                            }
+
+
+                        }
+                        if (key.equals(" ")){
+                            Toast.makeText(CartListActivity.this, "No items were checked", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+
             }
 
             @Override
@@ -77,18 +141,6 @@ public class CartListActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Model> getMyList(){
-
-        ArrayList<Model> models = new ArrayList<>();
-
-        Model m = new Model();
-        m.setTitle("News Feed");
-        m.setPrice("20$");
-        models.add(m);
-
-        return models;
-
-
     }
 
-}
+

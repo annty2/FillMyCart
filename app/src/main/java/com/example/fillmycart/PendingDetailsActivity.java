@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -16,14 +17,20 @@ public class PendingDetailsActivity extends AppCompatActivity {
 
     private DatabaseReference myRef;
 
+    private TextView updateTextView;
+    private TextView categoryTextView;
+    private TextView productName;
+    private TextView priceTextView;
+
+
     private EditText Category;
     private EditText pname;
     private EditText pPrice;
 
+
     private Button updatebtn;
-    private Button deletebtn;
     private Button backbth;
-    private Button acceptbtn;
+
 
     private String category;
     private String name;
@@ -34,6 +41,11 @@ public class PendingDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_details);
+
+        updateTextView = (TextView)findViewById(R.id.updateTextView);
+        categoryTextView = (TextView)findViewById(R.id.category);
+        productName = (TextView)findViewById(R.id.productName);
+        priceTextView = (TextView)findViewById(R.id.priceTextView);
 
         myRef = FirebaseDatabase.getInstance().getReference("Products");
 
@@ -50,9 +62,10 @@ public class PendingDetailsActivity extends AppCompatActivity {
         pPrice.setText(pprice.split(": ")[1]);
 
         updatebtn = (Button) findViewById(R.id.updateproductpending);
-        deletebtn = (Button) findViewById(R.id.DeclineProduct);
         backbth = (Button) findViewById(R.id.Backbtn);
-        acceptbtn = (Button) findViewById(R.id.approveProduct);
+
+
+
 
         updatebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,33 +99,8 @@ public class PendingDetailsActivity extends AppCompatActivity {
             }
         });
 
-        deletebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new FirebaseDatabaseHelper().deletePending(key, new FirebaseDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
 
-                    }
 
-                    @Override
-                    public void DataIsInserted() {
-
-                    }
-
-                    @Override
-                    public void DataIsUpdated() {
-
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-                        Toast.makeText(PendingDetailsActivity.this, "item declined.", Toast.LENGTH_SHORT).show();
-                        finish();return;
-                    }
-                });
-            }
-        });
         backbth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,36 +108,7 @@ public class PendingDetailsActivity extends AppCompatActivity {
             }
         });
 
-        acceptbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PendingProduct pendingProduct = new PendingProduct();
-                pendingProduct.setName(pname.getText().toString());
-                pendingProduct.setPrice(pPrice.getText().toString());
-                pendingProduct.setCategory(Category.getText().toString());
-                new FirebaseDatabaseHelper().addProduct(key, pendingProduct, new FirebaseDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
 
-                    }
-
-                    @Override
-                    public void DataIsInserted() {
-                        Toast.makeText(PendingDetailsActivity.this, "Item Accepted!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void DataIsUpdated() {
-
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-                        finish();return;
-                    }
-                });
-            }
-        });
     }
 
 }

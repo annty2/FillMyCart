@@ -17,8 +17,11 @@ public class PendingList_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_list_);
+
         email = getIntent().getStringExtra("email");
         backbtn = (Button) findViewById(R.id.bkbtn);
+
+        //go back to action screen
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

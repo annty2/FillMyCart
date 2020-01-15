@@ -1,6 +1,5 @@
 package com.example.fillmycart;
 
-import android.app.Notification;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +11,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
-import java.util.Random;
 
 public class ProductsDetailsActivity extends AppCompatActivity {
 
@@ -23,7 +21,6 @@ public class ProductsDetailsActivity extends AppCompatActivity {
     private EditText pPrice;
 
     private Button updatebtn;
-    private Button deletebtn;
     private Button backbth;
 
     private String category;
@@ -52,7 +49,7 @@ public class ProductsDetailsActivity extends AppCompatActivity {
         pPrice.setText(pprice.split(": ")[1]);
 
         updatebtn = (Button) findViewById(R.id.updateproductpending);
-        deletebtn = (Button) findViewById(R.id.DeclineProduct);
+
         backbth = (Button) findViewById(R.id.Backbtn);
 
         helper = new NotificationHelper(this);
@@ -79,6 +76,7 @@ public class ProductsDetailsActivity extends AppCompatActivity {
                     @Override
                     public void DataIsUpdated() {
                         Toast.makeText(ProductsDetailsActivity.this, "This item has been updated successfuly!", Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
@@ -89,36 +87,8 @@ public class ProductsDetailsActivity extends AppCompatActivity {
             }
         });
 
-        deletebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new FirebaseDatabaseHelperProducts().deletePending(key, new FirebaseDatabaseHelperProducts.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<PendingProduct> pendingProducts, List<String> keys) {
 
-                    }
-
-                    @Override
-                    public void DataIsInserted() {
-
-                    }
-
-                    @Override
-                    public void DataIsUpdated() {
-
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-                        String productName= pname.getText().toString();
-
-                        Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", productName+" deleted successfully!");
-                        helper.getManager().notify(new Random().nextInt(), builder.build());
-                        finish();return;
-                    }
-                });
-            }
-        });
+        //go back to product menu
         backbth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

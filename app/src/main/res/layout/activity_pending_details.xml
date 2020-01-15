@@ -1,110 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/pname"
+
+    <TextView
+        android:id="@+id/updateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Update"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
 
-    <EditText
-        android:id="@+id/pprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/textview"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pname"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/DeclineProduct"
-        android:layout_width="99dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="4dp"
-        android:layout_toRightOf="@+id/pprice"
-        android:layout_weight="1"
-        android:text="Decline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/pcategory"
-        app:layout_constraintTop_toBottomOf="@+id/approveProduct"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/updateproductpending"
-        android:layout_width="99dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="4dp"
-        android:layout_toRightOf="@+id/pprice"
-        android:layout_weight="1"
-        android:text="update"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/pcategory"
-        app:layout_constraintTop_toBottomOf="@+id/approveProduct"
-        app:layout_constraintVertical_bias="0.183" />
-
-    <Button
-        android:id="@+id/approveProduct"
-        android:layout_width="99dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="508dp"
-        android:layout_toRightOf="@+id/product_description"
-        android:layout_weight="1"
-        android:text="Approve"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <TextView
+    android:id="@+id/category"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:text="Category:"
+    android:textSize="30dp"
+    android:layout_below="@+id/updateTextView"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="15dp"/>
 
     <EditText
         android:id="@+id/pcategory"
-        android:layout_width="wrap_content"
+        android:layout_width="327dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="44dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pprice" />
+        android:layout_marginStart="4dp"
+        android:layout_below="@+id/updateTextView"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/category"
+        />
+
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Product Name:"
+        android:textSize="25dp"
+        android:layout_below="@+id/category"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"/>
+
+    <EditText
+        android:id="@+id/pname"
+        android:layout_width="227dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pcategory"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/category" />
+
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Price:"
+        android:textSize="25dp"
+        android:layout_below="@+id/productName"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"/>
+
+    <EditText
+        android:id="@+id/pprice"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pname"
+        android:layout_marginStart="-58dp"
+        android:layout_marginTop="41dp"
+        android:layout_toEndOf="@+id/category" />
+
+    <Button
+        android:id="@+id/updateproductpending"
+        android:text="Update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pprice"
+        android:layout_marginTop="100dp"/>
 
     <Button
         android:id="@+id/Backbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="472dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="83dp"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@+id/updateproductpending"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:text="Back to Menu"
+        />
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

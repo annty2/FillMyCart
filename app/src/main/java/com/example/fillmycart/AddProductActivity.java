@@ -1,5 +1,6 @@
 package com.example.fillmycart;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class AddProductActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private ImageView btnspeak1, btnspeak2;
     private int identifier1=0, identifier2=0;
+    NotificationHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,9 @@ public class AddProductActivity extends AppCompatActivity {
         returnToMenu=(Button) findViewById(R.id.returnButton);
         email = getIntent().getStringExtra("email");
         myRef = FirebaseDatabase.getInstance().getReference("Products");
+
+        helper = new NotificationHelper(this);
+
         Firebase.setAndroidContext(this);
 
         returnToMenu.setOnClickListener(new View.OnClickListener() {
@@ -91,16 +97,19 @@ public class AddProductActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            openDialog();
-//                            Toast.makeText(AddProductActivity.this,"Item was added successfully!!",
-//                                    Toast.LENGTH_LONG).show();
+
+                            Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item has been added");
+                            helper.getManager().notify(new Random().nextInt(),builder.build());
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(Exception e) {
-                            Toast.makeText(AddProductActivity.this,"Failed adding item",
-                                    Toast.LENGTH_LONG).show();
+
+                            DialogAddtoGlobalList dialogAddtoGlobalList = new DialogAddtoGlobalList();
+                            dialogAddtoGlobalList.show(getSupportFragmentManager(),"There was an error, item was not added");
+
                         }
                     });
 
@@ -111,10 +120,7 @@ public class AddProductActivity extends AppCompatActivity {
             priceEditText.getText().clear();
         }
     }
-    public void openDialog() {
-        DialogAddtoGlobalList dialogAddtoGlobalList = new DialogAddtoGlobalList();
-        dialogAddtoGlobalList.show(getSupportFragmentManager(),"item has been added");
-    }
+
 
     public void getSpeechInput(View view) {
 

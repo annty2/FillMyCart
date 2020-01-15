@@ -98,7 +98,7 @@ public class UserAddProduct extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item added successfully!wait for managers to approve");
+                            Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item added successfully! Wait for managers to approve");
                             helper.getManager().notify(new Random().nextInt(), builder.build());
                             openDialog();
                         }
@@ -106,8 +106,8 @@ public class UserAddProduct extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(Exception e) {
-                            Notification.Builder builder = helper.getEDMTChannelNotification("Fill My Cart", "Item not added!");
-                            helper.getManager().notify(new Random().nextInt(), builder.build());
+                            DialogAddToPendingList dialogAddToPendingList = new DialogAddToPendingList();
+                            dialogAddToPendingList.show(getSupportFragmentManager(),"There was an error, item was not added");
                         }
                     });
 
@@ -119,8 +119,7 @@ public class UserAddProduct extends AppCompatActivity {
         }
     }
     public void openDialog() {
-        DialogAddToPendingList dialogAddToPendingList = new DialogAddToPendingList();
-        dialogAddToPendingList.show(getSupportFragmentManager(),"item has been added to pending list");
+
     }
     public void getSpeechInput(View view) {
 
